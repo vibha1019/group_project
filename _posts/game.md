@@ -1,3 +1,14 @@
+---
+toc: false
+comments: true
+layout: post
+title: Week 3 Plan
+description: PBL Unit 1 / Week 3 plan using Utterance
+type: plans
+courses: { compsci: {week: 3} }
+permalink: /plans/week3
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
