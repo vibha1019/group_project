@@ -1,14 +1,3 @@
----
-toc: false
-comments: true
-layout: post
-title: Week 3 Plan
-description: PBL Unit 1 / Week 3 plan using Utterance
-type: plans
-courses: { compsci: {week: 3} }
-permalink: /plans/week3
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,17 +15,13 @@ permalink: /plans/week3
             bottom: 10px;
             left: 0;
             transform: translateX(0);
-            font-size: 3em; /* Adjust the font size to make the hamster bigger */
+            font-size: 7em; /* Adjust the font size to make the hamster bigger */
             transition: transform 0.1s ease-out; /* Adjust the transition duration for a faster slide */
         }
 
         .falling-item {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            background-color: #008000; /* Green */
-            border-radius: 50%;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            font-size: 4em; /* Adjust the font size to make the carrots bigger */
             animation: fall 2s linear infinite;
         }
 
@@ -80,6 +65,7 @@ permalink: /plans/week3
         function createFallingItem() {
             const fallingItem = document.createElement('div');
             fallingItem.classList.add('falling-item');
+            fallingItem.innerHTML = '🥕'; // Carrot emoji
 
             fallingItem.style.left = `${Math.random() * 90 + 5}vw`;
 
