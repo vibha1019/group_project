@@ -13,16 +13,31 @@
         #hamster {
             position: absolute;
             bottom: 10px;
-            left: 0;
-            transform: translateX(0);
-            font-size: 7em; /* Adjust the font size to make the hamster bigger */
-            transition: transform 0.1s ease-out; /* Adjust the transition duration for a faster slide */
+            left: 50%;
+            transform: translateX(-50%);
+            transition: transform 0.2s ease-out;
+            font-size: 40px; /* Adjust the font size to make the hamster bigger */
+        }
+
+        #score {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
         }
 
         .falling-item {
             position: absolute;
-            font-size: 4em; /* Adjust the font size to make the carrots bigger */
+            width: 30px;
+            height: 30px;
+            background-color: #FFA500; /* Orange */
+            border-radius: 50%;
             animation: fall 2s linear infinite;
+        }
+
+        .carrot {
+            font-size: 30px; /* Adjust the font size to make the carrot bigger */
         }
 
         @keyframes fall {
@@ -37,9 +52,13 @@
         🐹
     </div>
 
+    <div id="score">Score: 0</div>
+
     <script>
         const hamster = document.getElementById('hamster');
-        let hamsterPosition = 0;
+        const scoreElement = document.getElementById('score');
+        let hamsterPosition = 50;
+        let score = 0;
 
         window.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowLeft') {
@@ -50,23 +69,19 @@
         });
 
         function moveHamster(direction) {
-            const step = 20; // Adjust the step for a faster slide
-            const bodyWidth = document.body.clientWidth;
-
+            const step = 20; // Increase the step for faster movement
             if (direction === 'left') {
                 hamsterPosition = Math.max(hamsterPosition - step, 0);
             } else if (direction === 'right') {
-                hamsterPosition = Math.min(hamsterPosition + step, bodyWidth);
+                hamsterPosition = Math.min(hamsterPosition + step, 100);
             }
 
-            hamster.style.transform = `translateX(${hamsterPosition}px)`;
+            hamster.style.transform = `translateX(${hamsterPosition}%)`;
         }
 
         function createFallingItem() {
             const fallingItem = document.createElement('div');
-            fallingItem.classList.add('falling-item');
-            fallingItem.innerHTML = '🥕'; // Carrot emoji
-
+            fallingItem.classList.add('falling-item', 'carrot');
             fallingItem.style.left = `${Math.random() * 90 + 5}vw`;
 
             document.body.appendChild(fallingItem);
@@ -89,11 +104,12 @@
                 itemRect.left <= hamsterRect.right
             ) {
                 fallingItem.remove();
-                // Handle collision (e.g., increase score)
+                score++;
+                scoreElement.textContent = `Score: ${score}`;
             }
         }
 
-        setInterval(createFallingItem, 1000); // Create falling items every second
+        setInterval(createFallingItem, 3000); // Create falling items every 3 seconds
         setInterval(() => {
             document.querySelectorAll('.falling-item').forEach((item) => {
                 checkCollision(item);
