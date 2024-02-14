@@ -1,7 +1,7 @@
 ---
 toc: false
 comments: true
-layout: post
+layout: default
 title: GROUP PROJECT
 description: group project
 type: plans
